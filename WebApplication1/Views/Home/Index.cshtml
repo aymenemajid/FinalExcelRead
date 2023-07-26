@@ -167,6 +167,10 @@
         // Get the content of the div
         var content = document.getElementById("print_data").innerText;
 
+        // Remove empty lines from the content
+        var lines = content.split("\n").filter(line => line.trim() !== "");
+        content = lines.join("\n");
+
         // Create a new Blob object with the text content
         var blob = new Blob([content], { type: "text/plain" });
 
@@ -187,6 +191,7 @@
         document.body.removeChild(link);
         window.URL.revokeObjectURL(link.href);
     }
+
 
     // Add click event listener to the button
     var exportButton = document.getElementById("exp");
