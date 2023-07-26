@@ -6,6 +6,19 @@
 
 <div class="container">
 
+
+    <div class="container">
+        @if (!(User.IsInRole("Basic") || User.IsInRole("SuperAdmin") || User.IsInRole("Admin")))
+        {
+            <div class="alert alert-warning" role="alert">
+                Vous devez obtenir la validation de l'administrateur pour accéder aux privilèges requis. Veuillez contacter l'administrateur via l'adresse e-mail admin@onp.ma pour plus d'informations.
+            </div>
+            IgnoreBody();
+        }
+    </div>
+    @if ((User.IsInRole("Basic") || User.IsInRole("SuperAdmin") || User.IsInRole("Admin")))
+    {
+
     <h2 class="text-center mt-4 mb-4">Convert Excel to HTML Table </h2>
     <div class="card">
         <div class="card-header"><b>Select Excel File</b></div>
@@ -18,11 +31,13 @@
 
     </div>
     <div class="card" id="print_data" class="mt-5"></div>
- <button id="exp" class="btn btn-group-justified btn-primary" style="display:none;"> Export To text file</button> 
+    <button id="exp" class="btn btn-group-justified btn-primary" style="display:none;"> Export To text file</button>
     <div id="excel_data" class="mt-5"></div>
 
-</div>
 
+
+    }
+</div>
 
 <script>
 
